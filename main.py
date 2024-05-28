@@ -1,21 +1,25 @@
-def binary_search(arr, x):
-    low = 0
-    high = len(arr) - 1
-    while low <= high:
-        mid = (low + high) // 2
-        if arr[mid] == x:
-            return mid
-        elif arr[mid] > x:
-            high = mid - 1
-        else:
-            low = mid + 1
-    return -1
- 
-# 示例使用
-arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-x = 6
-index = binary_search(arr, x)
-if index != -1:
-    print(f"元素 {x} 的索引为 {index}")
-else:
-    print(f"数组中不存在 {x}")
+if __name__ == '__main__':
+    main()
+
+~from pr_agent import cli
+from pr_agent.config_loader import get_settings
+
+def main():
+    # Fill in the following values
+    provider = "github" # GitHub provider
+    user_token = "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"  # GitHub user token
+    openai_key = "sk-vvv-IP0TrzvWgFuO4mpTcu8pT3BlbkFJ7b6Ucg7F0E7Y3Nz9DtTW"  # OpenAI key
+    pr_url = "https://github.com/robin1001/kws_on_android/pull/4"   # PR URL, for example 'https://github.com/Codium-ai/pr-agent/pull/809'
+    command = "/review" # Command to run (e.g. '/review', '/describe', '/ask="What is the purpose of this PR?"', ...)
+
+    # Setting the configurations
+    get_settings().set("CONFIG.git_provider", provider)
+    get_settings().set("openai.key", openai_key)
+    get_settings().set("github.user_token", user_token)
+
+    # Run the command. Feedback will appear in GitHub PR comments
+    cli.run_command(pr_url, command)
+
+
+if __name__ == '__main__':
+    main()
