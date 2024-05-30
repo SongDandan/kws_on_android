@@ -6,12 +6,9 @@ def bubble_sort(arr):
                 arr[j], arr[j+1] = arr[j+1], arr[j]
     return arr
  
-# 示例使用
 array = [64, 34, 25, 12, 22, 11, 90]
 sorted_array = bubble_sort(array)
 print("Sorted array is:", sorted_array)
-
-
 def binary_search(arr, x):
     low = 0
     high = len(arr) - 1
@@ -52,3 +49,19 @@ def insertion_sort(arr):
 arr = [12, 11, 13, 5, 6]
 sorted_arr = insertion_sort(arr)
 print("Sorted array:", sorted_arr)
+
+
+def find_median(sorted_list):
+    n = len(sorted_list)
+    if n % 2 == 0:
+        # 如果列表长度为偶数，则中位数是中间两个数的平均值
+        median1 = n // 2 - 1
+        median2 = n // 2
+        return (sorted_list[median1] + sorted_list[median2]) / 2
+    else:
+        # 如果列表长度为奇数，则中位数是中间的单个数
+        return sorted_list[n // 2]
+ 
+# 示例
+my_list = [1, 3, 5, 7, 9]  # 已排序列表
+print(find_median(my_list))  # 输出: 5
